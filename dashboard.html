@@ -3,8 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <title>EcoLife – Dashboard</title>
+
 <link rel="stylesheet" href="style.css">
+
+<!-- Google Custom Search -->
+<script async src="https://cse.google.com/cse.js?cx=5167dd19fa495415f"></script>
+
+<style>
+/* ===== BASIC ===== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== HEADER ===== */
+header {
+    padding: 15px;
+    background: #2ecc71;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ===== CARDS ===== */
+#calculatorSelect {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 30px;
+}
+
+.calc-card {
+    background: #f4f4f4;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.calc-card a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* ===== FLOATING ICONS ===== */
+#aiChatIcon, #ecoSearchIcon {
+    position: fixed;
+    bottom: 20px;
+    font-size: 26px;
+    background: #2ecc71;
+    color: white;
+    padding: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#aiChatIcon { right: 20px; }
+#ecoSearchIcon { right: 80px; }
+
+/* ===== CHAT BOX ===== */
+#aiChatBox {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 280px;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.chat-header {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+#chatMessages {
+    height: 150px;
+    overflow-y: auto;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+/* ===== SEARCH BOX ===== */
+#ecoSearchBox {
+    position: fixed;
+    bottom: 80px;
+    right: 80px;
+    width: 350px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.hidden { display: none; }
+</style>
 </head>
+
 <body>
 
 <header>
@@ -12,18 +114,19 @@
     <button id="themeToggle">Toggle Theme</button>
 </header>
 
+<!-- ===== CALCULATORS ===== -->
 <section id="calculatorSelect">
 
     <div class="calc-card">
-        <a href="carbon.html">🌍 Carbon Calculator</a>
+        <a href="carbon.html">🌍 Carbon Footprint</a>
     </div>
 
     <div class="calc-card">
-        <a href="water.html">💧 Water Calculator</a>
+        <a href="water.html">💧 Water Usage</a>
     </div>
 
     <div class="calc-card">
-        <a href="energy.html">⚡ Energy Calculator</a>
+        <a href="energy.html">⚡ Energy Usage</a>
     </div>
 
     <div class="calc-card">
@@ -32,19 +135,67 @@
 
 </section>
 
-<hr>
+<!-- ===== AI CHAT ===== -->
+<div id="aiChatIcon">🤖</div>
 
-<!-- GOOGLE ECO SEARCH TOOL -->
-<section>
-    <h3>🔍 EcoLife Smart Search</h3>
+<div id="aiChatBox" class="hidden">
+    <div class="chat-header">
+        EcoBot
+        <span id="closeChat">✖</span>
+    </div>
 
-    <script async
-      src="https://cse.google.com/cse.js?cx=5167dd19fa495415f">
-    </script>
+    <div id="chatMessages">
+        <p><b>EcoBot:</b> Hi 👋 I am online. AI will be added soon.</p>
+    </div>
 
+    <input type="text" id="chatInput" placeholder="Type message..." />
+    <button onclick="sendChat()">Send</button>
+</div>
+
+<!-- ===== ECO SEARCH ===== -->
+<div id="ecoSearchIcon">🔍</div>
+
+<div id="ecoSearchBox" class="hidden">
+    <h3>🌱 Eco-Friendly Search</h3>
     <div class="gcse-search"></div>
-</section>
+    <button onclick="closeEcoSearch()">Close</button>
+</div>
 
-<script src="script.js"></script>
+<!-- ===== SCRIPT ===== -->
+<script>
+/* THEME */
+const themeToggle = document.getElementById("themeToggle");
+themeToggle.onclick = () => {
+    document.body.classList.toggle("dark");
+};
+
+/* AI CHAT */
+const aiChatIcon = document.getElementById("aiChatIcon");
+const aiChatBox = document.getElementById("aiChatBox");
+const closeChat = document.getElementById("closeChat");
+
+aiChatIcon.onclick = () => aiChatBox.classList.toggle("hidden");
+closeChat.onclick = () => aiChatBox.classList.add("hidden");
+
+function sendChat() {
+    const input = document.getElementById("chatInput");
+    if (!input.value.trim()) return;
+
+    const box = document.getElementById("chatMessages");
+    box.innerHTML += `<p><b>You:</b> ${input.value}</p>`;
+    box.innerHTML += `<p><b>EcoBot:</b> I am online. AI will be connected soon 🤖</p>`;
+    input.value = "";
+}
+
+/* ECO SEARCH */
+const ecoSearchIcon = document.getElementById("ecoSearchIcon");
+const ecoSearchBox = document.getElementById("ecoSearchBox");
+
+ecoSearchIcon.onclick = () => ecoSearchBox.classList.toggle("hidden");
+function closeEcoSearch() {
+    ecoSearchBox.classList.add("hidden");
+}
+</script>
+
 </body>
 </html>

@@ -3,31 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <title>Eco Score</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<header>
+    <button id="themeToggle">Toggle Theme</button>
+</header>
+
 <h2>🌿 Eco Score Calculator</h2>
 
-<label>Public Transport Uses (per week)</label>
-<input type="number" id="pt">
+<label>Day 1 Points</label>
+<input type="number" id="p1">
+<label>Day 2 Points</label>
+<input type="number" id="p2">
+<label>Day 3 Points</label>
+<input type="number" id="p3">
 
-<label>Plastic Items Used (per day)</label>
-<input type="number" id="plastic">
+<button onclick="drawChart()">Calculate</button>
 
-<button onclick="calcEco()">Calculate</button>
+<h3 id="avg"></h3>
 
-<h3 id="score"></h3>
+<canvas id="ecoChart" width="400" height="200"></canvas>
 
+<script src="script.js"></script>
 <script>
-function calcEco(){
-    let score = 100;
-    score -= plastic.value * 5;
-    score += pt.value * 3;
-    score = Math.max(score, 0);
-    document.getElementById("score").innerText =
-        "Your Eco Score: " + score + "/100";
+function drawChart() {
+    const data = [
+        Number(p1.value||0),
+        Number(p2.value||0),
+        Number(p3.value||0)
+    ];
+    const avg = (data.reduce((a,b)=>a+b,0)/data.length).toFixed(2);
+    document.getElementById("avg").innerText = "Average Eco Score: " + avg;
+
+    new Chart(document.getElementById("ecoChart"), {
+        type: 'line',
+        data: {
+            labels: ['Day 1','Day 2','Day 3'],
+            datasets: [{
+                label: 'Eco Score',
+                data: data,
+                borderColor:'purple',
+                borderWidth:2,
+                fill:false
+            }]
+        }
+    });
 }
 </script>
 
 </body>
 </html>
+

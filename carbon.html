@@ -2,32 +2,52 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Carbon Calculator</title>
-<link rel="stylesheet" href="style.css">
+<title>Carbon Footprint</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<header>
-    <h2>Carbon Calculator</h2>
-    <a href="dashboard.html">← Back to Dashboard</a>
-</header>
 
-<section id="carbonCalc">
-    <label>Transport (km):</label>
-    <input type="number" id="transport" placeholder="0">
-    <label>Food:</label>
-    <select id="food">
-        <option value="veg">Veg</option>
-        <option value="nonveg">Non-Veg</option>
-    </select>
-    <label>AC hours:</label>
-    <input type="number" id="ac" placeholder="0">
-    <label>Shower minutes:</label>
-    <input type="number" id="shower" placeholder="0">
-    <button id="calcCarbonBtn">Calculate CO₂</button>
-    <p id="carbonResult"></p>
-</section>
+<h2>🌍 Carbon Footprint Calculator</h2>
 
-<script src="script.js"></script>
+<label>Day 1 CO₂ (kg)</label>
+<input type="number" id="d1">
+<label>Day 2 CO₂ (kg)</label>
+<input type="number" id="d2">
+<label>Day 3 CO₂ (kg)</label>
+<input type="number" id="d3">
+
+<button onclick="drawChart()">Calculate</button>
+
+<h3 id="avg"></h3>
+
+<canvas id="carbonChart" width="400" height="200"></canvas>
+
+<script>
+function drawChart() {
+    const data = [
+        Number(d1.value||0),
+        Number(d2.value||0),
+        Number(d3.value||0)
+    ];
+
+    const avg = (data.reduce((a,b)=>a+b,0)/data.length).toFixed(2);
+    document.getElementById("avg").innerText =
+        "Average CO₂: " + avg + " kg/day";
+
+    new Chart(document.getElementById("carbonChart"), {
+        type: 'line',
+        data: {
+            labels: ['Day 1','Day 2','Day 3'],
+            datasets: [{
+                label: 'CO₂ Emission (kg)',
+                data: data,
+                borderWidth: 2
+            }]
+        }
+    });
+}
+</script>
+
 </body>
 </html>
 

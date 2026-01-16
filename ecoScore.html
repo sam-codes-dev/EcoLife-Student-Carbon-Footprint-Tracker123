@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoLife – Eco Score Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <h1>Eco Score Calculator</h1>
+        <button id="themeToggle">Toggle Dark/Light</button>
+    </header>
+
+    <main class="calculator-main">
+        <div class="calculator-inputs">
+            <label>Transport (km by car)</label>
+            <input type="number" id="ecoTransport" placeholder="e.g. 10">
+            <label>Food Type</label>
+            <select id="ecoFood">
+                <option value="veg">Vegetarian</option>
+                <option value="nonveg">Non-Vegetarian</option>
+            </select>
+            <label>AC Usage (hours)</label>
+            <input type="number" id="ecoAC" placeholder="e.g. 2">
+            <label>Shower Time (minutes)</label>
+            <input type="number" id="ecoShower" placeholder="e.g. 10">
+            <button id="calcEcoBtn">Calculate Eco Score</button>
+        </div>
+
+        <div class="calculator-output">
+            <h2 id="ecoResult"></h2>
+            <p id="ecoTip"></p>
+            <div id="ecoChart" style="width:100%; height:400px;"></div>
+        </div>
+
+        <a href="dashboard.html" class="btn-secondary">Back to Dashboard</a>
+    </main>
+
+    <div id="aiChatIcon">💬</div>
+    <div id="aiChatBox" class="hidden">
+        <div class="chat-header">EcoBot 🤖 <span id="closeChat">✖</span></div>
+        <div id="chatMessages"></div>
+        <input type="text" id="chatInput" placeholder="Type your question...">
+        <button id="chatSend">Send</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

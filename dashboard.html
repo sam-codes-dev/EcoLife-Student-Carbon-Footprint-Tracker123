@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <title>EcoLife – Dashboard</title>
 <link rel="stylesheet" href="style.css">
+<style>
+body { font-family: Arial, sans-serif; padding:20px; }
+header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+h2 { margin:0; }
+button { padding:8px 12px; cursor:pointer; }
+#calculatorSelect { display:grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap:20px; }
+.calc-card { background:#e0f7e9; padding:20px; border-radius:8px; text-align:center; font-weight:bold; font-size:18px; transition:0.2s; }
+.calc-card:hover { background:#b0e4c1; }
+.calc-card a { text-decoration:none; color:#333; display:block; height:100%; }
+</style>
 </head>
 <body>
 
@@ -13,24 +23,50 @@
 </header>
 
 <section id="calculatorSelect">
-    <h3>Select a Calculator</h3>
-    <div class="calc-card">
-        <a href="carbon.html">Carbon Calculator</a>
-    </div>
-    <div class="calc-card">
-        <a href="money.html">Money Weekly Calculator</a>
-    </div>
-    <div class="calc-card">
-        <a href="water.html">Water/Energy Calculator</a>
-    </div>
-    <div class="calc-card">
-        <a href="eco.html">Eco Score Calculator</a>
-    </div>
+    <div class="calc-card"><a href="carbon.html">Carbon Calculator</a></div>
+    <div class="calc-card"><a href="money.html">Money Weekly Calculator</a></div>
+    <div class="calc-card"><a href="water.html">Water/Energy Calculator</a></div>
+    <div class="calc-card"><a href="eco.html">Eco Score Calculator</a></div>
 </section>
 
 <script src="script.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EcoLife – Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body { font-family: Arial, sans-serif; padding:20px; }
+header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+h2 { margin:0; }
+button { padding:8px 12px; cursor:pointer; }
+#calculatorSelect { display:grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap:20px; }
+.calc-card { background:#e0f7e9; padding:20px; border-radius:8px; text-align:center; font-weight:bold; font-size:18px; transition:0.2s; }
+.calc-card:hover { background:#b0e4c1; }
+.calc-card a { text-decoration:none; color:#333; display:block; height:100%; }
+</style>
+</head>
+<body>
+
+<header>
+    <h2>Welcome, <span id="userName"></span> 🌱</h2>
+    <button id="themeToggle">Toggle Theme</button>
+</header>
+
+<section id="calculatorSelect">
+    <div class="calc-card"><a href="carbon.html">Carbon Calculator</a></div>
+    <div class="calc-card"><a href="money.html">Money Weekly Calculator</a></div>
+    <div class="calc-card"><a href="water.html">Water/Energy Calculator</a></div>
+    <div class="calc-card"><a href="eco.html">Eco Score Calculator</a></div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
+
 
 
     

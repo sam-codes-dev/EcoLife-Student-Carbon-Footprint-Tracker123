@@ -13,53 +13,12 @@ if (localStorage.getItem("theme") === "dark") {
 }
 
 /* ==========================
-   OFFLINE SIGNUP (localStorage)
+   BACKEND URL
 ========================== */
-document.getElementById("signupBtn")?.addEventListener("click", () => {
-    const name = document.getElementById("signupName")?.value.trim();
-    const email = document.getElementById("signupEmail")?.value.trim();
-    const password = document.getElementById("signupPassword")?.value.trim();
-
-    if (!name || !email || !password) {
-        alert("Please fill all fields");
-        return;
-    }
-
-    // Offline storage
-    if (localStorage.getItem(email)) {
-        alert("Account already exists. Please login.");
-        return;
-    }
-    localStorage.setItem(email, JSON.stringify({ name, password }));
-
-    // Online signup
-    signupUser(name, email, password);
-
-    alert("Account created successfully!");
-    window.location.href = "login.html";
-});
+const BACKEND_URL = "https://backend-neon-nine-36.vercel.app";
 
 /* ==========================
-   OFFLINE LOGIN (localStorage)
-========================== */
-document.getElementById("loginBtn")?.addEventListener("click", () => {
-    const email = document.getElementById("loginEmail")?.value.trim();
-    const password = document.getElementById("loginPassword")?.value.trim();
-
-    // Offline check
-    const user = JSON.parse(localStorage.getItem(email));
-    if (user && user.password === password) {
-        localStorage.setItem("currentUser", email);
-        window.location.href = "chat.html";
-        return;
-    }
-
-    // Online login
-    loginUser(email, password);
-});
-
-/* ==========================
-   DASHBOARD USER NAME
+   DASHBOARD USER
 ========================== */
 const currentUser = localStorage.getItem("currentUser");
 if (currentUser) {
@@ -72,110 +31,61 @@ if (currentUser) {
    CARBON CALCULATOR
 ========================== */
 document.getElementById("calcCarbonBtn")?.addEventListener("click", () => {
-    const transport = Number(document.getElementById("transport")?.value || 0);
-    const food = document.getElementById("food")?.value === "veg" ? 5 : 10;
-    const ac = Number(document.getElementById("ac")?.value || 0);
-    const shower = Number(document.getElementById("shower")?.value || 0);
+    const transport = Number(document.getElementById("transport").value || 0);
+    const food = document.getElementById("food").value === "veg" ? 5 : 10;
+    const ac = Number(document.getElementById("ac").value || 0);
+    const shower = Number(document.getElementById("shower").value || 0);
 
-    const total = transport * 0.21 + food + ac * 1.5 + shower * 0.08;
-
-    document.getElementById("carbonResult").textContent =
-        `Your CO₂ Today: ${total.toFixed(2)} kg`;
-
-    document.getElementById("carbonTip").textContent =
-        total > 20 ? "Reduce AC & car usage" : "Great eco habits!";
+    const total = transport*0.21 + food + ac*1.5 + shower*0.08;
+    document.getElementById("carbonResult").textContent = `Your CO₂ Today: ${total.toFixed(2)} kg`;
+    document.getElementById("carbonTip").textContent = total > 20 ? "Reduce AC & car usage" : "Great eco habits!";
 });
 
 /* ==========================
-   OFFLINE AI CHAT
+   MONEY WEEKLY CALCULATOR
 ========================== */
-const chatIcon = document.getElementById("aiChatIcon");
-const chatBox = document.getElementById("aiChatBox");
-const chatMessages = document.getElementById("chatMessages");
-const chatInput = document.getElementById("chatInput");
-
-chatIcon?.addEventListener("click", () => chatBox?.classList.toggle("hidden"));
-
-function sendChatOffline() {
-    const msg = chatInput?.value.trim();
-    if (!msg) return;
-
-    addMsgOffline("You", msg);
-    chatInput.value = "";
-
-    if (navigator.onLine) {
-        addMsgOffline("EcoBot 🤖", "Online AI coming soon. You are connected.");
-    } else {
-        addMsgOffline("EcoBot 🤖", "Offline help: Try calculators, dashboard, or tips.");
-    }
-}
-
-function addMsgOffline(sender, text) {
-    if (!chatMessages) return;
-    const div = document.createElement("div");
-    div.textContent = `${sender}: ${text}`;
-    chatMessages.appendChild(div);
-}
+document.getElementById("calcMoneyBtn")?.addEventListener("click", () => {
+    const daily = Number(document.getElementById("moneyDaily").value || 0);
+    const weekly = daily * 7;
+    document.getElementById("moneyResult").textContent = `Money Saved Weekly: ₹${weekly}`;
+});
 
 /* ==========================
-   ONLINE BACKEND (Vercel)
+   WATER/ENERGY CALCULATOR
 ========================== */
-const BACKEND_URL = "https://backend-neon-nine-36.vercel.app";
-
-/* SIGNUP ONLINE */
-async function signupUser(name, email, password) {
-    try {
-        const res = await fetch(`${BACKEND_URL}/signup`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, password })
-        });
-        const text = await res.text();
-        console.log("Backend signup response:", text);
-    } catch (err) {
-        console.error("Backend signup failed:", err);
-    }
-}
-
-/* LOGIN ONLINE */
-async function loginUser(email, password) {
-    try {
-        const res = await fetch(`${BACKEND_URL}/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-        });
-        const text = await res.text();
-
-        if (res.ok) {
-            window.location.href = "chat.html";
-        } else {
-            alert(text);
-        }
-    } catch (err) {
-        alert("Online login failed");
-        console.error(err);
-    }
-}
+document.getElementById("calcWaterEnergyBtn")?.addEventListener("click", () => {
+    const water = Number(document.getElementById("waterDaily").value || 0);
+    const energy = Number(document.getElementById("energyDaily").value || 0);
+    const totalImpact = water*0.05 + energy*0.3; // Example formula
+    document.getElementById("waterEnergyResult").textContent = `Impact Score: ${totalImpact.toFixed(2)}`;
+});
 
 /* ==========================
-   ONLINE AI CHAT
+   ECO SCORE CALCULATOR
+========================== */
+document.getElementById("calcEcoBtn")?.addEventListener("click", () => {
+    const points = Number(document.getElementById("ecoPoints").value || 0);
+    const ecoScore = Math.min(points*10, 100); // 0-100 scale
+    document.getElementById("ecoScoreResult").textContent = `Eco Score: ${ecoScore}`;
+});
+
+/* ==========================
+   AI CHAT
 ========================== */
 async function sendMessage() {
     const input = document.getElementById("userInput");
-    const message = input?.value.trim();
-    if (!message) return;
+    const msg = input.value.trim();
+    if (!msg) return;
 
-    addMessage("You", message);
+    addMessage("You", msg);
     input.value = "";
-
     addMessage("AI", "Typing...");
 
     try {
         const res = await fetch(`${BACKEND_URL}/chat`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message })
+            body: JSON.stringify({ message: msg })
         });
         const data = await res.json();
         updateLastMessage("AI", data.reply);

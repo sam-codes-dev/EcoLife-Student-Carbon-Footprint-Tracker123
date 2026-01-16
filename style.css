@@ -287,4 +287,15 @@ button.calc-btn:hover {
         display: block;
         margin: 10px auto;
     }
-}
+}body { font-family: Arial, sans-serif; padding:20px; background:#f7f7f7; }
+.dark-theme { background:#222; color:#f7f7f7; }
+header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+h2 { margin:0; }
+button { padding:8px 12px; cursor:pointer; margin:5px 0; }
+.auth-box { max-width:400px; margin:50px auto; padding:20px; background:#fff; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1);}
+input, select { width:100%; padding:8px; margin:5px 0; border-radius:4px; border:1px solid #ccc; }
+#calculatorSelect { display:grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap:20px; }
+.calc-card { background:#e0f7e9; padding:20px; border-radius:8px; text-align:center; font-weight:bold; font-size:18px; transition:0.2s; }
+.calc-card:hover { background:#b0e4c1; }
+.calc-card a { text-decoration:none; color:#333; display:block; height:100%; }
+

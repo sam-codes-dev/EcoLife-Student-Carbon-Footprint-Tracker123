@@ -6,51 +6,32 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <header>
     <h2>Welcome, <span id="userName"></span> 🌱</h2>
     <button id="themeToggle">Toggle Theme</button>
 </header>
 
-<section id="calculators">
-    <!-- Carbon Calculator -->
-    <h3>Carbon Calculator</h3>
-    <input type="number" id="transport" placeholder="Transport km">
-    <select id="food"><option value="veg">Veg</option><option value="nonveg">Non-Veg</option></select>
-    <input type="number" id="ac" placeholder="AC hours">
-    <input type="number" id="shower" placeholder="Shower minutes">
-    <button id="calcCarbonBtn">Calculate CO₂</button>
-    <p id="carbonResult"></p>
-
-    <!-- Money Weekly -->
-    <h3>Money Weekly Calculator</h3>
-    <input type="number" id="moneyDaily" placeholder="Daily money saved">
-    <button id="calcMoneyBtn">Calculate Weekly</button>
-    <p id="moneyResult"></p>
-
-    <!-- Water/Energy -->
-    <h3>Water/Energy Calculator</h3>
-    <input type="number" id="waterDaily" placeholder="Daily water liters">
-    <input type="number" id="energyDaily" placeholder="Daily energy kWh">
-    <button id="calcWaterEnergyBtn">Calculate</button>
-    <p id="waterEnergyResult"></p>
-
-    <!-- Eco Score -->
-    <h3>Eco Score Calculator</h3>
-    <input type="number" id="ecoPoints" placeholder="Weekly points">
-    <button id="calcEcoBtn">Calculate Eco Score</button>
-    <p id="ecoScoreResult"></p>
-</section>
-
-<section id="aiChat">
-    <h3>AI Chat</h3>
-    <div id="chatBox" style="border:1px solid #ccc; padding:10px; height:200px; overflow-y:auto;"></div>
-    <input type="text" id="userInput" placeholder="Type your message...">
-    <button onclick="sendMessage()">Send</button>
+<section id="calculatorSelect">
+    <h3>Select a Calculator</h3>
+    <div class="calc-card">
+        <a href="carbon.html">Carbon Calculator</a>
+    </div>
+    <div class="calc-card">
+        <a href="money.html">Money Weekly Calculator</a>
+    </div>
+    <div class="calc-card">
+        <a href="water.html">Water/Energy Calculator</a>
+    </div>
+    <div class="calc-card">
+        <a href="eco.html">Eco Score Calculator</a>
+    </div>
 </section>
 
 <script src="script.js"></script>
 </body>
 </html>
+
 
     
 

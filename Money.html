@@ -1,46 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>EcoLife – Money Saved</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<meta charset="UTF-8">
+<title>Money Weekly Calculator</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="app-header">
-        <h1>Eco Money Saved</h1>
-        <button id="themeToggle">Toggle Dark/Light</button>
-    </header>
+<header>
+    <h2>Money Weekly Calculator</h2>
+    <a href="dashboard.html">← Back to Dashboard</a>
+</header>
 
-    <main class="calculator-main">
-        <div class="calculator-inputs">
-            <label>Transport (km by car)</label>
-            <input type="number" id="moneyTransport" placeholder="e.g. 10">
-            <label>AC Usage (hours)</label>
-            <input type="number" id="moneyAC" placeholder="e.g. 2">
-            <label>Food Savings (meals vegetarian)</label>
-            <input type="number" id="moneyFood" placeholder="e.g. 1">
-            <button id="calcMoneyBtn">Calculate Money Saved</button>
-        </div>
+<section id="moneyCalc">
+    <label>Money saved daily (₹):</label>
+    <input type="number" id="moneyDaily" placeholder="0">
+    <button id="calcMoneyBtn">Calculate Weekly Savings</button>
+    <p id="moneyResult"></p>
+</section>
 
-        <div class="calculator-output">
-            <h2 id="moneyResult"></h2>
-            <p id="moneyTip"></p>
-            <div id="moneyChart" style="width:100%; height:400px;"></div>
-        </div>
-
-        <a href="dashboard.html" class="btn-secondary">Back to Dashboard</a>
-    </main>
-
-    <div id="aiChatIcon">💬</div>
-    <div id="aiChatBox" class="hidden">
-        <div class="chat-header">EcoBot 🤖 <span id="closeChat">✖</span></div>
-        <div id="chatMessages"></div>
-        <input type="text" id="chatInput" placeholder="Type your question...">
-        <button id="chatSend">Send</button>
-    </div>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
-

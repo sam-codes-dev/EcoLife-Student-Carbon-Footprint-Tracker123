@@ -1,0 +1,290 @@
+/* ==========================
+   GENERAL STYLING
+========================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f6f1;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+a {
+    text-decoration: none;
+    color: #2e7d32;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+/* ==========================
+   DARK THEME
+========================== */
+body.dark-theme {
+    background-color: #1c1c1c;
+    color: #f0f0f0;
+}
+
+body.dark-theme a {
+    color: #81c784;
+}
+
+/* ==========================
+   HEADER
+========================== */
+.app-header {
+    background-color: #2e7d32;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 2.2em;
+}
+
+.tagline {
+    font-style: italic;
+    font-size: 1em;
+}
+
+#themeToggle {
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: #43a047;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+#themeToggle:hover {
+    background-color: #2e7d32;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+.app-footer {
+    background-color: #2e7d32;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* ==========================
+   LANDING PAGE
+========================== */
+.landing-main {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.hero h2 {
+    font-size: 2em;
+}
+
+.cta-buttons a {
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #43a047;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2e7d32;
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: #2e7d32;
+    border: 2px solid #2e7d32;
+}
+
+.btn-secondary:hover {
+    background-color: #2e7d32;
+    color: white;
+}
+
+/* ==========================
+   FEATURES LIST
+========================== */
+.features h3 {
+    margin-top: 40px;
+    font-size: 1.5em;
+}
+
+.features ul li {
+    margin: 10px 0;
+}
+
+/* ==========================
+   LOGIN / SIGNUP PAGES
+========================== */
+.auth-container, .auth-box {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+body.dark-theme .auth-container, body.dark-theme .auth-box {
+    background-color: #2c2c2c;
+}
+
+.auth-container h2, .auth-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-container label, .auth-box label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: 600;
+}
+
+.auth-container input, .auth-box input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.auth-container button, .auth-box button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #43a047;
+    color: white;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.auth-container button:hover, .auth-box button:hover {
+    background-color: #2e7d32;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* ==========================
+   DASHBOARD / CALCULATORS
+========================== */
+.app-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+body.dark-theme .app-container {
+    background-color: #2c2c2c;
+}
+
+.input-section .field {
+    margin: 15px 0;
+}
+
+.input-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.input-section input, .input-section select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button.calc-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #43a047;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.calc-btn:hover {
+    background-color: #2e7d32;
+}
+
+/* ==========================
+   RESULTS & TIPS
+========================== */
+.output-section, .tip-section {
+    margin-top: 20px;
+}
+
+.result-text, .suggestion-text, .tip-text {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+.suggestion-text, .tip-text {
+    font-style: italic;
+    font-weight: normal;
+}
+
+/* ==========================
+   FLOATING AI CHAT BUTTON
+========================== */
+#aiChatBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #43a047;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 999;
+}
+
+#aiChatBtn:hover {
+    background-color: #2e7d32;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+@media only screen and (max-width: 600px) {
+    .landing-main, .app-container, .auth-container, .auth-box {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .cta-buttons a {
+        display: block;
+        margin: 10px auto;
+    }
+}

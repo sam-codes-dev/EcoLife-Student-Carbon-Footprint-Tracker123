@@ -1,62 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>EcoLife Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>EcoLife Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f4f7f5;
+      color: #222;
+    }
+
+    header {
+      background: #1b5e20;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #2e7d32;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 18px;
+      background: #2e7d32;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .card a:hover {
+      background: #1b5e20;
+    }
+  </style>
 </head>
+
 <body>
-    <header class="app-header">
-        <h1>Welcome, <span id="userName"></span> 🌱</h1>
-        <button id="themeToggle">Toggle Dark/Light</button>
-    </header>
 
-    <main class="dashboard-main">
-        <section class="calculator-cards">
-            <div class="card">
-                <h3>Daily Carbon</h3>
-                <p>Track daily CO2 emissions.</p>
-                <a href="carbon.html" class="btn-primary">Go</a>
-            </div>
-            <div class="card">
-                <h3>Eco Score</h3>
-                <p>Calculate your eco score and get tips.</p>
-                <a href="ecoScore.html" class="btn-primary">Go</a>
-            </div>
-            <div class="card">
-                <h3>Weekly Trend</h3>
-                <p>View your weekly eco progress.</p>
-                <a href="weekly.html" class="btn-primary">Go</a>
-            </div>
-            <div class="card">
-                <h3>Eco Money Saved</h3>
-                <p>See how much money & CO2 you saved.</p>
-                <a href="money.html" class="btn-primary">Go</a>
-            </div>
-        </section>
+<header>
+  <h1>EcoLife Dashboard</h1>
+  <p>Track. Understand. Improve your sustainability.</p>
+</header>
 
-        <section class="reviews">
-            <h3>User Reviews</h3>
-            <ul id="reviewsList"></ul>
-        </section>
-    </main>
+<section class="dashboard">
+  <div class="card">
+    <h3>Carbon Calculator</h3>
+    <p>Measure daily activities and calculate carbon footprint.</p>
+    <a href="carbon.html">Open</a>
+  </div>
 
-    <!-- Floating AI Chat -->
-    <div id="aiChatIcon">💬</div>
-    <div id="aiChatBox" class="hidden">
-        <div class="chat-header">
-            EcoBot 🤖 <span id="closeChat">✖</span>
-        </div>
-        <div id="chatMessages"></div>
-        <input type="text" id="chatInput" placeholder="Type your question...">
-        <button id="chatSend">Send</button>
-    </div>
+  <div class="card">
+    <h3>Eco Score</h3>
+    <p>Get an overall sustainability score based on habits.</p>
+    <a href="ecoScore.html">Open</a>
+  </div>
 
-    <footer class="app-footer">
-        Contact us: <a href="mailto:youremail@gmail.com">youremail@gmail.com</a>
-    </footer>
+  <div class="card">
+    <h3>Weekly Impact</h3>
+    <p>Track how your actions affect the environment weekly.</p>
+    <a href="weekly.html">Open</a>
+  </div>
 
-    <script src="script.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <div class="card">
+    <h3>Money Saver</h3>
+    <p>See how eco-friendly choices save money.</p>
+    <a href="money.html">Open</a>
+  </div>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
+
+
+    

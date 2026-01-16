@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoLife – Weekly Trend</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <h1>Weekly Trend</h1>
+        <button id="themeToggle">Toggle Dark/Light</button>
+    </header>
+
+    <main class="calculator-main">
+        <div class="calculator-inputs">
+            <label>Enter CO2 for past 7 days (kg)</label>
+            <input type="text" id="weekInput" placeholder="Comma separated, e.g. 10,12,8,9,11,7,10">
+            <button id="calcWeekBtn">Show Weekly Trend</button>
+        </div>
+
+        <div class="calculator-output">
+            <div id="weekChart" style="width:100%; height:400px;"></div>
+        </div>
+
+        <a href="dashboard.html" class="btn-secondary">Back to Dashboard</a>
+    </main>
+
+    <div id="aiChatIcon">💬</div>
+    <div id="aiChatBox" class="hidden">
+        <div class="chat-header">EcoBot 🤖 <span id="closeChat">✖</span></div>
+        <div id="chatMessages"></div>
+        <input type="text" id="chatInput" placeholder="Type your question...">
+        <button id="chatSend">Send</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

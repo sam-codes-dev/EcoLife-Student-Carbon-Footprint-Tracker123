@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Water Usage</title>
+</head>
+<body>
+
+<h2>💧 Water Usage Calculator</h2>
+
+<label>Shower (minutes)</label>
+<input type="number" id="shower">
+
+<label>Washing (times)</label>
+<input type="number" id="wash">
+
+<button onclick="calcWater()">Calculate</button>
+
+<h3 id="result"></h3>
+
+<script>
+function calcWater(){
+    const total = (shower.value*9) + (wash.value*50);
+    result.innerText = "Estimated Water Use: " + total + " liters/day";
+}
+</script>
+
+</body>
+</html>
+

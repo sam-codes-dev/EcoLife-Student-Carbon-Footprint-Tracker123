@@ -4,8 +4,13 @@
 <meta charset="UTF-8">
 <title>Carbon Footprint</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<header>
+    <button id="themeToggle">Toggle Theme</button>
+</header>
 
 <h2>🌍 Carbon Footprint Calculator</h2>
 
@@ -22,6 +27,7 @@
 
 <canvas id="carbonChart" width="400" height="200"></canvas>
 
+<script src="script.js"></script>
 <script>
 function drawChart() {
     const data = [
@@ -29,10 +35,8 @@ function drawChart() {
         Number(d2.value||0),
         Number(d3.value||0)
     ];
-
     const avg = (data.reduce((a,b)=>a+b,0)/data.length).toFixed(2);
-    document.getElementById("avg").innerText =
-        "Average CO₂: " + avg + " kg/day";
+    document.getElementById("avg").innerText = "Average CO₂: " + avg + " kg/day";
 
     new Chart(document.getElementById("carbonChart"), {
         type: 'line',
@@ -41,7 +45,9 @@ function drawChart() {
             datasets: [{
                 label: 'CO₂ Emission (kg)',
                 data: data,
-                borderWidth: 2
+                borderColor:'green',
+                borderWidth:2,
+                fill:false
             }]
         }
     });
@@ -50,4 +56,3 @@ function drawChart() {
 
 </body>
 </html>
-

@@ -191,5 +191,49 @@ function updateLastMessage(sender, text) {
     if (!chatBox) return;
     chatBox.lastChild.innerText = `${sender}: ${text}`;
 }
+// script.js
+
+const BACKEND_URL = "https://backend-neon-nine-36.vercel.app";
+
+// SIGN UP
+async function signupUser() {
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+
+    try {
+        const res = await fetch(`${BACKEND_URL}/signup`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password })
+        });
+
+        const text = await res.text();
+        alert(text);
+    } catch (err) {
+        alert("Signup failed");
+        console.error(err);
+    }
+}
+
+// LOGIN
+async function loginUser() {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    try {
+        const res = await fetch(`${BACKEND_URL}/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+
+        const text = await res.text();
+        alert(text);
+    } catch (err) {
+        alert("Login failed");
+        console.error(err);
+    }
+}
 
 

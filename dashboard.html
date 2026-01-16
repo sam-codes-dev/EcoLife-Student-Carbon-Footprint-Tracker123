@@ -3,131 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>EcoLife – Dashboard</title>
-
-<style>
-/* ========== BASIC ========== */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f4f4f4;
-}
-
-.dark-theme {
-    background: #121212;
-    color: white;
-}
-
-/* ========== HEADER ========== */
-header {
-    background: #2ecc71;
-    color: white;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-button {
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-/* ========== CALCULATORS ========== */
-#calculatorSelect {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
-.calc-card {
-    background: white;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.calc-card a {
-    text-decoration: none;
-    color: #2ecc71;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.dark-theme .calc-card {
-    background: #1e1e1e;
-}
-
-/* ========== AI BOT ICON ========== */
-#aiBotIcon {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #2ecc71;
-    color: white;
-    font-size: 28px;
-    padding: 14px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    z-index: 1000;
-}
-
-/* ========== AI CHAT BOX ========== */
-#aiChatBox {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    width: 280px;
-    background: white;
-    border-radius: 10px;
-    display: none;
-    flex-direction: column;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-    z-index: 1000;
-}
-
-#aiHeader {
-    background: #2ecc71;
-    color: white;
-    padding: 10px;
-    font-weight: bold;
-    border-radius: 10px 10px 0 0;
-}
-
-#aiMessages {
-    padding: 10px;
-    height: 160px;
-    overflow-y: auto;
-    font-size: 14px;
-}
-
-#aiInput {
-    border: none;
-    padding: 8px;
-    border-top: 1px solid #ccc;
-    outline: none;
-}
-
-#aiChatBox button {
-    background: #2ecc71;
-    color: white;
-    border: none;
-    padding: 8px;
-}
-
-/* Dark mode chat */
-.dark-theme #aiChatBox {
-    background: #1e1e1e;
-    color: white;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
@@ -136,75 +13,38 @@ button {
 </header>
 
 <section id="calculatorSelect">
+
     <div class="calc-card">
-        <a href="carbon.html">🌍 Carbon Footprint</a>
+        <a href="carbon.html">🌍 Carbon Calculator</a>
     </div>
 
     <div class="calc-card">
-        <a href="water.html">💧 Water Usage</a>
+        <a href="water.html">💧 Water Calculator</a>
     </div>
 
     <div class="calc-card">
-        <a href="energy.html">⚡ Energy Usage</a>
+        <a href="energy.html">⚡ Energy Calculator</a>
     </div>
 
     <div class="calc-card">
         <a href="eco.html">🌿 Eco Score</a>
     </div>
+
 </section>
 
-<!-- AI BOT -->
-<div id="aiBotIcon">🤖</div>
+<hr>
 
-<div id="aiChatBox">
-    <div id="aiHeader">Eco AI Assistant</div>
-    <div id="aiMessages">
-        <p><b>AI:</b> Hi 👋 I’m your Eco assistant</p>
-    </div>
-    <input type="text" id="aiInput" placeholder="Ask something..." />
-    <button onclick="sendMessage()">Send</button>
-</div>
+<!-- GOOGLE ECO SEARCH TOOL -->
+<section>
+    <h3>🔍 EcoLife Smart Search</h3>
 
-<script>
-/* ========== THEME TOGGLE ========== */
-const themeToggle = document.getElementById("themeToggle");
+    <script async
+      src="https://cse.google.com/cse.js?cx=5167dd19fa495415f">
+    </script>
 
-themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-theme");
-    localStorage.setItem(
-        "theme",
-        document.body.classList.contains("dark-theme") ? "dark" : "light"
-    );
-});
+    <div class="gcse-search"></div>
+</section>
 
-if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark-theme");
-}
-
-/* ========== AI BOT ========== */
-const aiBotIcon = document.getElementById("aiBotIcon");
-const aiChatBox = document.getElementById("aiChatBox");
-
-aiBotIcon.addEventListener("click", () => {
-    aiChatBox.style.display =
-        aiChatBox.style.display === "flex" ? "none" : "flex";
-});
-
-function sendMessage() {
-    const input = document.getElementById("aiInput");
-    const messages = document.getElementById("aiMessages");
-
-    if (input.value.trim() === "") return;
-
-    messages.innerHTML += `<p><b>You:</b> ${input.value}</p>`;
-    messages.innerHTML += `<p><b>AI:</b> I'm online 🤖 (API will be added)</p>`;
-
-    input.value = "";
-    messages.scrollTop = messages.scrollHeight;
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
-
-

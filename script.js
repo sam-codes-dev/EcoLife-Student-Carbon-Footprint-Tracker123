@@ -16,20 +16,32 @@ if(localStorage.getItem("theme")==="dark"){ document.body.classList.add("dark-th
 /* ==========================
    Signup/Login
 ========================== */
+document.getElementById("signupBtn")?.addEventListener("click",()=>{
+    const name = document.getElementById("signupName").value;
+    const email = document.getElementById("signupEmail").value;
+    const password = document.getElementById("signupPassword").value;
+    if(name && email && password){
+        localStorage.setItem(email, JSON.stringify({name,password}));
+        alert("Account created! Login now.");
+        window.location.href="login.html";
+    } else alert("Please fill all fields.");
+});
 
-// Simple login simulation
-function loginUser() {
+document.getElementById("loginBtn")?.addEventListener("click",()=>{
     const email = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
+    const data = JSON.parse(localStorage.getItem(email));
+    if(data && data.password===password){
+        localStorage.setItem("currentUser", email);
+        window.location.href="dashboard.html";
+    } else alert("Invalid credentials");
+});
 
-    if(email && password){
-        // simulate successful login
-        window.location.href = "dashboard.html";
-    } else {
-        alert("Please enter valid email and password");
-    }
+const userEmail = localStorage.getItem("currentUser");
+if(userEmail){
+    const userData = JSON.parse(localStorage.getItem(userEmail));
+    document.getElementById("userName")?.textContent = userData.name;
 }
-
 
 /* ==========================
    Floating AI Chat Box

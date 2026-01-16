@@ -3,28 +3,58 @@
 <head>
 <meta charset="UTF-8">
 <title>Water Usage</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<header>
+    <button id="themeToggle">Toggle Theme</button>
+</header>
+
 <h2>💧 Water Usage Calculator</h2>
 
-<label>Shower (minutes)</label>
-<input type="number" id="shower">
+<label>Day 1 Water (liters)</label>
+<input type="number" id="w1">
+<label>Day 2 Water (liters)</label>
+<input type="number" id="w2">
+<label>Day 3 Water (liters)</label>
+<input type="number" id="w3">
 
-<label>Washing (times)</label>
-<input type="number" id="wash">
+<button onclick="drawChart()">Calculate</button>
 
-<button onclick="calcWater()">Calculate</button>
+<h3 id="avg"></h3>
 
-<h3 id="result"></h3>
+<canvas id="waterChart" width="400" height="200"></canvas>
 
+<script src="script.js"></script>
 <script>
-function calcWater(){
-    const total = (shower.value*9) + (wash.value*50);
-    result.innerText = "Estimated Water Use: " + total + " liters/day";
+function drawChart() {
+    const data = [
+        Number(w1.value||0),
+        Number(w2.value||0),
+        Number(w3.value||0)
+    ];
+    const avg = (data.reduce((a,b)=>a+b,0)/data.length).toFixed(2);
+    document.getElementById("avg").innerText = "Average Water Usage: " + avg + " L/day";
+
+    new Chart(document.getElementById("waterChart"), {
+        type: 'line',
+        data: {
+            labels: ['Day 1','Day 2','Day 3'],
+            datasets: [{
+                label: 'Water Usage (L)',
+                data: data,
+                borderColor:'blue',
+                borderWidth:2,
+                fill:false
+            }]
+        }
+    });
 }
 </script>
 
 </body>
 </html>
+
 

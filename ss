@@ -1,110 +1,303 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>EcoLife Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+/* ==========================
+   GENERAL STYLING
+========================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f6f1;
+    color: #333;
+    transition: all 0.3s ease;
+}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f4f7f5;
-      color: #222;
+a {
+    text-decoration: none;
+    color: #2e7d32;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+/* ==========================
+   DARK THEME
+========================== */
+body.dark-theme {
+    background-color: #1c1c1c;
+    color: #f0f0f0;
+}
+
+body.dark-theme a {
+    color: #81c784;
+}
+
+/* ==========================
+   HEADER
+========================== */
+.app-header {
+    background-color: #2e7d32;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 2.2em;
+}
+
+.tagline {
+    font-style: italic;
+    font-size: 1em;
+}
+
+#themeToggle {
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: #43a047;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+#themeToggle:hover {
+    background-color: #2e7d32;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+.app-footer {
+    background-color: #2e7d32;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* ==========================
+   LANDING PAGE
+========================== */
+.landing-main {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.hero h2 {
+    font-size: 2em;
+}
+
+.cta-buttons a {
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #43a047;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2e7d32;
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: #2e7d32;
+    border: 2px solid #2e7d32;
+}
+
+.btn-secondary:hover {
+    background-color: #2e7d32;
+    color: white;
+}
+
+/* ==========================
+   FEATURES LIST
+========================== */
+.features h3 {
+    margin-top: 40px;
+    font-size: 1.5em;
+}
+
+.features ul li {
+    margin: 10px 0;
+}
+
+/* ==========================
+   LOGIN / SIGNUP PAGES
+========================== */
+.auth-container, .auth-box {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+body.dark-theme .auth-container, body.dark-theme .auth-box {
+    background-color: #2c2c2c;
+}
+
+.auth-container h2, .auth-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-container label, .auth-box label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: 600;
+}
+
+.auth-container input, .auth-box input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.auth-container button, .auth-box button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #43a047;
+    color: white;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.auth-container button:hover, .auth-box button:hover {
+    background-color: #2e7d32;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* ==========================
+   DASHBOARD / CALCULATORS
+========================== */
+.app-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+body.dark-theme .app-container {
+    background-color: #2c2c2c;
+}
+
+.input-section .field {
+    margin: 15px 0;
+}
+
+.input-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.input-section input, .input-section select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button.calc-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #43a047;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.calc-btn:hover {
+    background-color: #2e7d32;
+}
+
+/* ==========================
+   RESULTS & TIPS
+========================== */
+.output-section, .tip-section {
+    margin-top: 20px;
+}
+
+.result-text, .suggestion-text, .tip-text {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+.suggestion-text, .tip-text {
+    font-style: italic;
+    font-weight: normal;
+}
+
+/* ==========================
+   FLOATING AI CHAT BUTTON
+========================== */
+#aiChatBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #43a047;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 999;
+}
+
+#aiChatBtn:hover {
+    background-color: #2e7d32;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+@media only screen and (max-width: 600px) {
+    .landing-main, .app-container, .auth-container, .auth-box {
+        margin: 20px;
+        padding: 15px;
     }
 
-    header {
-      background: #1b5e20;
-      color: white;
-      padding: 20px;
-      text-align: center;
+    .cta-buttons a {
+        display: block;
+        margin: 10px auto;
     }
-
-    .dashboard {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      padding: 30px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 25px;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      color: #2e7d32;
-    }
-
-    .card p {
-      font-size: 0.9rem;
-      color: #555;
-    }
-
-    .card a {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 18px;
-      background: #2e7d32;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-
-    .card a:hover {
-      background: #1b5e20;
-    }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <h1>EcoLife Dashboard</h1>
-  <p>Track. Understand. Improve your sustainability.</p>
-</header>
-
-<section class="dashboard">
-  <div class="card">
-    <h3>Carbon Calculator</h3>
-    <p>Measure daily activities and calculate carbon footprint.</p>
-    <a href="carbon.html">Open</a>
-  </div>
-
-  <div class="card">
-    <h3>Eco Score</h3>
-    <p>Get an overall sustainability score based on habits.</p>
-    <a href="ecoScore.html">Open</a>
-  </div>
-
-  <div class="card">
-    <h3>Weekly Impact</h3>
-    <p>Track how your actions affect the environment weekly.</p>
-    <a href="weekly.html">Open</a>
-  </div>
-
-  <div class="card">
-    <h3>Money Saver</h3>
-    <p>See how eco-friendly choices save money.</p>
-    <a href="money.html">Open</a>
-  </div>
-</section>
-
-<script src="script.js"></script>
-</body>
-</html>
+}body { font-family: Arial, sans-serif; padding:20px; background:#f7f7f7; }
+.dark-theme { background:#222; color:#f7f7f7; }
+header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+h2 { margin:0; }
+button { padding:8px 12px; cursor:pointer; margin:5px 0; }
+.auth-box { max-width:400px; margin:50px auto; padding:20px; background:#fff; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1);}
+input, select { width:100%; padding:8px; margin:5px 0; border-radius:4px; border:1px solid #ccc; }
+#calculatorSelect { display:grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap:20px; }
+.calc-card { background:#e0f7e9; padding:20px; border-radius:8px; text-align:center; font-weight:bold; font-size:18px; transition:0.2s; }
+.calc-card:hover { background:#b0e4c1; }
+.calc-card a { text-decoration:none; color:#333; display:block; height:100%; }
 
 
     

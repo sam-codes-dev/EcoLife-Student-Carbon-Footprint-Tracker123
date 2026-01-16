@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoLife Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="app-header">
+        <h1>Welcome, <span id="userName"></span> 🌱</h1>
+        <button id="themeToggle">Toggle Dark/Light</button>
+    </header>
+
+    <main class="dashboard-main">
+        <section class="calculator-cards">
+            <div class="card">
+                <h3>Daily Carbon</h3>
+                <p>Track daily CO2 emissions.</p>
+                <a href="carbon.html" class="btn-primary">Go</a>
+            </div>
+            <div class="card">
+                <h3>Eco Score</h3>
+                <p>Calculate your eco score and get tips.</p>
+                <a href="ecoScore.html" class="btn-primary">Go</a>
+            </div>
+            <div class="card">
+                <h3>Weekly Trend</h3>
+                <p>View your weekly eco progress.</p>
+                <a href="weekly.html" class="btn-primary">Go</a>
+            </div>
+            <div class="card">
+                <h3>Eco Money Saved</h3>
+                <p>See how much money & CO2 you saved.</p>
+                <a href="money.html" class="btn-primary">Go</a>
+            </div>
+        </section>
+
+        <section class="reviews">
+            <h3>User Reviews</h3>
+            <ul id="reviewsList"></ul>
+        </section>
+    </main>
+
+    <!-- Floating AI Chat -->
+    <div id="aiChatIcon">💬</div>
+    <div id="aiChatBox" class="hidden">
+        <div class="chat-header">
+            EcoBot 🤖 <span id="closeChat">✖</span>
+        </div>
+        <div id="chatMessages"></div>
+        <input type="text" id="chatInput" placeholder="Type your question...">
+        <button id="chatSend">Send</button>
+    </div>
+
+    <footer class="app-footer">
+        Contact us: <a href="mailto:youremail@gmail.com">youremail@gmail.com</a>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</body>
+</html>

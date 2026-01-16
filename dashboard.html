@@ -1,115 +1,60 @@
-/* ==========================
-   THEME TOGGLE
-========================== */
-const toggleBtn = document.getElementById("themeToggle");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EcoLife – Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark-theme");
-}
+<header>
+    <h2>Welcome to EcoLife 🌱</h2>
+    <button id="themeToggle">Toggle Theme</button>
+</header>
 
-toggleBtn?.addEventListener("click", () => {
-    document.body.classList.toggle("dark-theme");
-    localStorage.setItem(
-        "theme",
-        document.body.classList.contains("dark-theme") ? "dark" : "light"
-    );
-});
+<section id="calculatorSelect">
 
-/* ==========================
-   DASHBOARD USER NAME
-========================== */
-const currentUser = localStorage.getItem("currentUser");
-if (currentUser) {
-    const userData = JSON.parse(localStorage.getItem(currentUser));
-    const userNameEl = document.querySelector("header h2");
-    if (userNameEl) userNameEl.textContent = `Welcome, ${userData.name} 🌱`;
-}
+    <div class="calc-card">
+        <a href="carbon.html">🌍 Carbon Footprint Calculator</a>
+    </div>
 
-/* ==========================
-   AI CHATBOX
-========================== */
-const chatIcon = document.getElementById("aiChatIcon");
-const chatBox = document.getElementById("aiChatBox");
-const closeChat = document.getElementById("closeChat");
-const chatMessages = document.getElementById("chatMessages");
-const chatInput = document.getElementById("chatInput");
-const sendBtn = document.getElementById("sendBtn");
+    <div class="calc-card">
+        <a href="water.html">💧 Water Usage Calculator</a>
+    </div>
 
-// Replace below with your API key & CX if you want JSON API
-// For now, using Google CSE snippet (frontend)
-const API_KEY = "AIzaSyBTUsfAEpavRKLuNOdWbkSDtew5ohFsIpY";
-const CX = "5167dd19fa495415f";
+    <div class="calc-card">
+        <a href="energy.html">⚡ Energy Usage Calculator</a>
+    </div>
 
-chatIcon?.addEventListener("click", () => {
-    chatBox.classList.toggle("hidden");
-});
+    <div class="calc-card">
+        <a href="eco.html">🌿 Eco Score Calculator</a>
+    </div>
 
-closeChat?.addEventListener("click", () => {
-    chatBox.classList.add("hidden");
-});
+</section>
 
-sendBtn?.addEventListener("click", async () => {
-    const msg = chatInput.value.trim();
-    if (!msg) return;
+<!-- GOOGLE CUSTOM SEARCH -->
+<h3>🌱 Search for Eco Tips</h3>
+<script async src="https://cse.google.com/cse.js?cx=5167dd19fa495415f"></script>
+<div class="gcse-search"></div>
 
-    addMsg("You", msg);
-    chatInput.value = "";
+<!-- AI CHATBOX -->
+<div id="aiChatIcon">🤖</div>
 
-    addMsg("EcoBot 🤖", "Searching online...");
+<div id="aiChatBox" class="hidden">
+    <div class="chat-header">
+        EcoBot 🤖
+        <span id="closeChat">✖</span>
+    </div>
 
-    // Using Google Custom Search JSON API
-    try {
-        const res = await fetch(
-            `https://www.googleapis.com/customsearch/v1?key=${API_KEY}&cx=${CX}&q=${encodeURIComponent(msg)}`
-        );
-        const data = await res.json();
+    <div id="chatMessages"></div>
 
-        let reply = "I couldn't find anything 😕";
-        if (data.items && data.items.length > 0) {
-            reply = data.items[0].snippet;
-        }
+    <input type="text" id="chatInput" placeholder="Ask something eco-friendly..." />
+    <button id="sendBtn">Send</button>
+</div>
 
-        updateLastMessage("EcoBot 🤖", reply);
+<script src="script.js"></script>
+</body>
+</html>
 
-    } catch (err) {
-        console.error(err);
-        updateLastMessage("EcoBot 🤖", "Error fetching info from Google 😕");
-    }
-});
-
-function addMsg(sender, text) {
-    const div = document.createElement("div");
-    div.textContent = `${sender}: ${text}`;
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-function updateLastMessage(sender, text) {
-    if (chatMessages.lastChild) {
-        chatMessages.lastChild.textContent = `${sender}: ${text}`;
-    }
-}
-
-/* ==========================
-   CALCULATORS PLACEHOLDER
-========================== */
-// You can add your Carbon, Water, Energy, Eco Score calculator functions here
-// Example Carbon Calculator (to be used in carbon.html):
-/*
-document.getElementById("calcCarbonBtn")?.addEventListener("click", () => {
-    const transport = Number(document.getElementById("transport").value || 0);
-    const food = document.getElementById("food").value === "veg" ? 5 : 10;
-    const ac = Number(document.getElementById("ac").value || 0);
-    const shower = Number(document.getElementById("shower").value || 0);
-
-    const total = transport * 0.21 + food + ac * 1.5 + shower * 0.08;
-
-    document.getElementById("carbonResult").textContent =
-        `Your CO₂ Today: ${total.toFixed(2)} kg`;
-
-    document.getElementById("carbonTip").textContent =
-        total > 20 ? "Reduce AC & car usage" : "Great eco habits!";
-});
-*/
 
 

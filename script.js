@@ -111,5 +111,43 @@ function updateLastMessage(sender, text) {
     if (!chatBox) return;
     chatBox.lastChild.innerText = `${sender}: ${text}`;
 }
+document.getElementById("loginBtn")?.addEventListener("click", async () => {
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
+
+    if (!email || !password) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    // 1️⃣ Check offline localStorage
+    const user = JSON.parse(localStorage.getItem(email));
+    if (user && user.password === password) {
+        localStorage.setItem("currentUser", email); // Must be set BEFORE redirect
+        window.location.href = "dashboard.html";     // Redirect
+        return;
+    }
+
+    // 2️⃣ Check online backend
+    try {
+        const res = await fetch("https://backend-neon-nine-36.vercel.app/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+
+        const text = await res.text();
+
+        if (res.ok) {
+            localStorage.setItem("currentUser", email); // Must be set BEFORE redirect
+            window.location.href = "dashboard.html";     // Redirect
+        } else {
+            alert(text);
+        }
+    } catch (err) {
+        alert("Login failed. Check your connection.");
+        console.error(err);
+    }
+});
 
 

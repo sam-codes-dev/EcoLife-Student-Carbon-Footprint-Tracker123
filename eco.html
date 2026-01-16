@@ -2,22 +2,32 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Eco Score Calculator</title>
-<link rel="stylesheet" href="style.css">
+<title>Eco Score</title>
 </head>
 <body>
-<header>
-    <h2>Eco Score Calculator</h2>
-    <a href="dashboard.html">← Back to Dashboard</a>
-</header>
 
-<section id="ecoCalc">
-    <label>Eco Points (from activities):</label>
-    <input type="number" id="ecoPoints" placeholder="0">
-    <button id="calcEcoBtn">Calculate Eco Score</button>
-    <p id="ecoScoreResult"></p>
-</section>
+<h2>🌿 Eco Score Calculator</h2>
 
-<script src="script.js"></script>
+<label>Public Transport Uses (per week)</label>
+<input type="number" id="pt">
+
+<label>Plastic Items Used (per day)</label>
+<input type="number" id="plastic">
+
+<button onclick="calcEco()">Calculate</button>
+
+<h3 id="score"></h3>
+
+<script>
+function calcEco(){
+    let score = 100;
+    score -= plastic.value * 5;
+    score += pt.value * 3;
+    score = Math.max(score, 0);
+    document.getElementById("score").innerText =
+        "Your Eco Score: " + score + "/100";
+}
+</script>
+
 </body>
 </html>

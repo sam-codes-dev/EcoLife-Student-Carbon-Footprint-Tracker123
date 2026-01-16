@@ -1,53 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Daily Carbon Calculator</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Carbon Calculator</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="app-header">
-        <h1>Daily Carbon Tracker</h1>
-        <button id="themeToggle">Toggle Dark/Light</button>
-    </header>
+<header>
+    <h2>Carbon Calculator</h2>
+    <a href="dashboard.html">← Back to Dashboard</a>
+</header>
 
-    <main class="calculator-main">
-        <div class="calculator-inputs">
-            <label>Transport (km by car)</label>
-            <input type="number" id="transport" placeholder="e.g. 10">
-            <label>Food Type</label>
-            <select id="food">
-                <option value="veg">Vegetarian</option>
-                <option value="nonveg">Non-Vegetarian</option>
-            </select>
-            <label>AC Usage (hours)</label>
-            <input type="number" id="ac" placeholder="e.g. 2">
-            <label>Shower Time (minutes)</label>
-            <input type="number" id="shower" placeholder="e.g. 10">
-            <button id="calcCarbonBtn">Calculate</button>
-        </div>
+<section id="carbonCalc">
+    <label>Transport (km):</label>
+    <input type="number" id="transport" placeholder="0">
+    <label>Food:</label>
+    <select id="food">
+        <option value="veg">Veg</option>
+        <option value="nonveg">Non-Veg</option>
+    </select>
+    <label>AC hours:</label>
+    <input type="number" id="ac" placeholder="0">
+    <label>Shower minutes:</label>
+    <input type="number" id="shower" placeholder="0">
+    <button id="calcCarbonBtn">Calculate CO₂</button>
+    <p id="carbonResult"></p>
+</section>
 
-        <div class="calculator-output">
-            <h2 id="carbonResult"></h2>
-            <p id="carbonTip"></p>
-            <div id="carbonChart" style="width: 100%; height: 400px;"></div>
-        </div>
-
-        <a href="dashboard.html" class="btn-secondary">Back to Dashboard</a>
-    </main>
-
-    <!-- Floating AI Chat -->
-    <div id="aiChatIcon">💬</div>
-    <div id="aiChatBox" class="hidden">
-        <div class="chat-header">
-            EcoBot 🤖 <span id="closeChat">✖</span>
-        </div>
-        <div id="chatMessages"></div>
-        <input type="text" id="chatInput" placeholder="Type your question...">
-        <button id="chatSend">Send</button>
-    </div>
-
-    <script src="script.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
+

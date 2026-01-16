@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Energy Usage Calculator</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<h2>⚡ Energy Usage Calculator</h2>
+
+<label>Day 1 Units (kWh)</label>
+<input type="number" id="e1">
+
+<label>Day 2 Units (kWh)</label>
+<input type="number" id="e2">
+
+<label>Day 3 Units (kWh)</label>
+<input type="number" id="e3">
+
+<button onclick="calcEnergy()">Calculate</button>
+
+<h3 id="avg"></h3>
+
+<canvas id="energyChart" width="400" height="200"></canvas>
+
+<script>
+function calcEnergy() {
+    const data = [
+        Number(e1.value || 0),
+        Number(e2.value || 0),
+        Number(e3.value || 0)
+    ];
+
+    const avg = (data.reduce((a,b)=>a+b,0) / data.length).toFixed(2);
+    document.getElementById("avg").innerText =
+        "Average Energy Usage: " + avg + " kWh/day";
+
+    new Chart(document.getElementById("energyChart"), {
+        type: 'line',
+        data: {
+            labels: ['Day 1', 'Day 2', 'Day 3'],
+            datasets: [{
+                label: 'Energy Usage (kWh)',
+                data: data,
+                borderWidth: 2
+            }]
+        }
+    });
+}
+</script>
+
+</body>
+</html>

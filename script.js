@@ -110,4 +110,86 @@ document.getElementById("calcCarbonBtn")?.addEventListener("click", () => {
     document.getElementById("carbonTip").textContent =
         total > 20 ? "Reduce AC & car usage" : "Great eco habits!";
 });
+// ==============================
+// SIGN UP
+// ==============================
+async function signupUser() {
+    const name = document.getElementById('signupName')?.value;
+    const email = document.getElementById('signupEmail')?.value;
+    const password = document.getElementById('signupPassword')?.value;
+
+    const res = await fetch('http://localhost:3000/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password })
+    });
+
+    const text = await res.text();
+    alert(text);
+}
+
+// ==============================
+// LOGIN
+// ==============================
+async function loginUser() {
+    const email = document.getElementById('loginEmail')?.value;
+    const password = document.getElementById('loginPassword')?.value;
+
+    const res = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    });
+
+    if (res.ok) {
+        window.location.href = "chat.html";
+    } else {
+        const text = await res.text();
+        alert(text);
+    }
+}
+
+// ==============================
+// AI CHAT
+// ==============================
+async function sendMessage() {
+    const input = document.getElementById("userInput");
+    const message = input?.value.trim();
+    if (!message) return;
+
+    addMessage("You", message);
+    input.value = "";
+
+    addMessage("AI", "Typing...");
+
+    const res = await fetch(
+        "https://YOUR-VERCEL-URL/chat",
+        {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message })
+        }
+    );
+
+    const data = await res.json();
+    updateLastMessage("AI", data.reply);
+}
+
+// ==============================
+// CHAT HELPERS
+// ==============================
+function addMessage(sender, text) {
+    const chatBox = document.getElementById("chatBox");
+    if (!chatBox) return;
+    const div = document.createElement("div");
+    div.innerText = `${sender}: ${text}`;
+    chatBox.appendChild(div);
+}
+
+function updateLastMessage(sender, text) {
+    const chatBox = document.getElementById("chatBox");
+    if (!chatBox) return;
+    chatBox.lastChild.innerText = `${sender}: ${text}`;
+}
+
 

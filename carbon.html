@@ -37,11 +37,7 @@ function drawChart() {
     ];
     const avg = (data.reduce((a,b)=>a+b,0)/data.length).toFixed(2);
     document.getElementById("avg").innerText = "Average CO₂: " + avg + " kg/day";
-// Destroy previous chart if exists
-    if(carbonChart)
-    {
-        carbonChart.destroy();
-    }
+
     new Chart(document.getElementById("carbonChart"), {
         type: 'line',
         data: {
